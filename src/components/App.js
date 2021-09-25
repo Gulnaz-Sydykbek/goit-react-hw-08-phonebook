@@ -2,11 +2,10 @@ import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Navigation from './Navigation/Navigation';
+import AppBar from './UserMenu/AppBar';
 import HomeView from '../views/HomeView';
 import RegisterView from '../views/RegisterView';
 import LoginView from '../views/LoginView';
-
 import Container from './container/Container';
 import ContactList from './phonebook/ContactList';
 import ContactForm from './phonebook/ContactForm';
@@ -15,7 +14,7 @@ import Filter from './phonebook/Filter';
 function App() {
   return (
     <Container>
-      <Navigation />
+      <AppBar />
 
       <Switch>
         <Route exact path="/" component={HomeView} />
