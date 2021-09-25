@@ -1,40 +1,39 @@
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { phonebookOperations, phonebookSelector } from 'redux/phonebook';
+import PropTypes from 'prop-types';
 import s from './Contacts.module.css';
+import * as phonebookActions from '../../redux/phonebook/phonebook-actions';
+
+const getVisiblePhonbookList = (filter, items) => {
+  const normolizedFilter = filter.toLowerCase();
+
+  return items.filter(item =>
+    item.name.toLowerCase().includes(normolizedFilter),
+  );
+};
 
 function ContactList() {
-  const contacts = useSelector(phonebookSelector.getVisiblePhonbookList);
-  const loading = useSelector(phonebookSelector.getLoading);
-  const error = useSelector(phonebookSelector.getError);
+  const { item } = s;
+
+  const contacts = useSelector(state =>
+    getVisiblePhonbookList(state.contacts.filter, state.contacts.items),
+  );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(phonebookOperations.fetchPhonebooks());
-  }, [dispatch]);
-
-  const onDeleteContact = id =>
-    dispatch(phonebookOperations.deleteContacts(id));
-
-  const { item } = s;
+  const onDeleteContact = id => dispatch(phonebookActions.deleteContact(id));
 
   return (
     <ul>
-      {error && <h2>{error}</h2>}
-      {contacts.length > 0 &&
-        contacts.map(({ id, name, number }) => (
-          <li className={item} key={id}>
-            <span>
-              {name}: {number}
-            </span>
-            <button type="button" onClick={() => onDeleteContact(id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-
-      {loading && <h2>Loading...</h2>}
+      {contacts.map(({ id, name, number }) => (
+        <li className={item} key={id}>
+          <span>
+            {name}: {number}
+          </span>
+          <button type="button" onClick={() => onDeleteContact(id)}>
+            Delete
+          </button>
+        </li>
+      ))}
     </ul>
   );
 }
