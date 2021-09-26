@@ -1,40 +1,23 @@
-//Без синтаксического сахора (без toolkit)
-
-/*import shortId from 'shortid';
-import * as types from './phonebook-types';
-
-export const addNewContact = (name, number) => ({
-  type: types.ADD,
-  payload: {
-    id: shortId.generate(),
-    name,
-    number,
-  },
-});
-
-export const deleteContact = contactId => ({
-  type: types.DELETE,
-  payload: contactId,
-});
-
-export const changeFilter = value => ({
-  type: types.CHANGE_FILTER,
-  payload: value,
-});*/
-
-//=============================================================
-
-import shortId from 'shortid';
 import { createAction } from '@reduxjs/toolkit';
 
-export const addNewContact = createAction('phonebook/Add', (name, number) => ({
-  payload: {
-    id: shortId.generate(),
-    name,
-    number,
-  },
-}));
-
-export const deleteContact = createAction('phonebook/Delete');
-
 export const changeFilter = createAction('phonebook/ChangeFilter');
+
+export const fetchContactRequest = createAction(
+  'phonebook/fetchContactRequest',
+);
+export const fetchContactSuccess = createAction(
+  'phonebook/fetchContactSuccsess',
+);
+export const fetchContactError = createAction('phonebook/fetchContactError');
+
+export const addContactRequest = createAction('phonebook/addContactRequest');
+export const addContactSuccess = createAction('phonebook/addContactSuccsess');
+export const addContactError = createAction('phonebook/addContactError');
+
+export const deleteContactRequest = createAction(
+  'phonebook/deleteContactRequest',
+);
+export const deleteContactSuccess = createAction(
+  'phonebook/deleteContactSuccsess',
+);
+export const deleteContactError = createAction('phonebook/deleteContactError');

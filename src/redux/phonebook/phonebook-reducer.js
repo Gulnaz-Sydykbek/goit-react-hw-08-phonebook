@@ -1,57 +1,50 @@
-//Без синтаксического сахора (без toolkit)
-
-/*import { combineReducers } from 'redux';
-import * as types from './phonebook-types';
-
-const items = (state = [], { type, payload }) => {
-  switch (type) {
-    case types.ADD:
-      return [...state, payload];
-
-    case types.DELETE:
-      return state.filter(contact => contact.id !== payload);
-
-    default:
-      return state;
-  }
-};
-
-const filter = (state = '', { type, payload }) => {
-  switch (type) {
-    case types.CHANGE_FILTER:
-      return payload;
-
-    default:
-      return state;
-  }
-};
-
-const phonebookReduser = combineReducers({
-  items,
-  filter,
-});
-
-export default phonebookReduser;*/
-
-//=============================================================
-
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import * as phonebookActions from './phonebook-actions';
 
-const items = createReducer([], {
-  [phonebookActions.addNewContact]: (state, { payload }) => [...state, payload],
-  [phonebookActions.deleteContact]: (state, { payload }) =>
+const entities = createReducer([], {
+  [phonebookActions.fetchContactSuccess]: (_, { payload }) => payload,
+  [phonebookActions.addContactSuccess]: (state, { payload }) => [
+    ...state,
+    payload,
+  ],
+  [phonebookActions.deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 
 const filter = createReducer('', {
   [phonebookActions.changeFilter]: (_, { payload }) => payload,
-}); //Если не используем state то можно вместо него поставить _ подчеркивание.
+});
+
+const isLoading = createReducer(false, {
+  [phonebookActions.fetchContactRequest]: () => true,
+  [phonebookActions.fetchContactSuccess]: () => false,
+  [phonebookActions.fetchContactError]: () => false,
+
+  [phonebookActions.addContactRequest]: () => true,
+  [phonebookActions.addContactSuccess]: () => false,
+  [phonebookActions.addContactError]: () => false,
+
+  [phonebookActions.deleteContactRequest]: () => true,
+  [phonebookActions.deleteContactSuccess]: () => false,
+  [phonebookActions.deleteContactError]: () => false,
+});
+
+const error = createReducer(null, {
+  [phonebookActions.fetchContactError]: (_, { payload }) => payload,
+  [phonebookActions.fetchContactRequest]: () => null,
+
+  [phonebookActions.addContactError]: (_, { payload }) => payload,
+  [phonebookActions.addContactRequest]: () => null,
+
+  [phonebookActions.deleteContactError]: (_, { payload }) => payload,
+  [phonebookActions.deleteContactRequest]: () => null,
+});
 
 const phonebookReduser = combineReducers({
-  items,
+  entities,
   filter,
+  isLoading,
+  error,
 });
 
 export default phonebookReduser;
