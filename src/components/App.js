@@ -1,17 +1,26 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AppBar from './UserMenu/AppBar';
-import HomeView from '../views/HomeView';
-import RegisterView from '../views/RegisterView';
-import LoginView from '../views/LoginView';
+import HomeView from 'views/HomeView';
+import RegisterView from 'views/RegisterView';
+import LoginView from 'views/LoginView';
 import Container from './container/Container';
 import ContactList from './phonebook/ContactList';
 import ContactForm from './phonebook/ContactForm';
 import Filter from './phonebook/Filter';
+import * as authOperations from 'redux/auth/auth-operations';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Container>
       <AppBar />
