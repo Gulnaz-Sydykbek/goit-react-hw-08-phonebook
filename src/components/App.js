@@ -42,11 +42,11 @@ function App() {
             <RegisterView />
           </PublicRoute>
 
-          <PublicRoute exact path="/login" redirectTo="/phonebook" restricted>
+          <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
             <LoginView />
           </PublicRoute>
 
-          <PrivateRoute path="/phonebook" redirectTo="/login">
+          <PrivateRoute path="/contacts" redirectTo="/login">
             <h1>Phonebook</h1>
             <ContactForm />
 

@@ -14,7 +14,7 @@ function Navigation() {
       </NavLink>
 
       {isLoggedIn && (
-        <NavLink to="/phonebook" className={link} activeClassName={activeLink}>
+        <NavLink to="/contacts" className={link} activeClassName={activeLink}>
           Phonebook
         </NavLink>
       )}
