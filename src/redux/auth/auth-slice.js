@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import * as authOperations from './auth-operations';
 
 const initialState = {
@@ -22,7 +23,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.register.rejected](state, action) {
-      state.error = action.payload;
+      toast.error(action.payload);
     },
 
     [authOperations.logIn.pending](state) {
@@ -34,7 +35,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.logIn.rejected](state, action) {
-      state.error = action.payload;
+      toast.error(action.payload);
     },
 
     [authOperations.logOut.pending](state) {
@@ -46,7 +47,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.logOut.rejected](state, action) {
-      state.error = action.payload;
+      toast.error(action.payload);
     },
 
     [authOperations.fetchCurrentUser.pending](state) {
@@ -60,7 +61,7 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state, action) {
       state.isFetchingCurrentUser = false;
-      state.error = action.payload;
+      toast.error(action.payload);
     },
   },
 });

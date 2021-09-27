@@ -36,7 +36,7 @@ function RegisterView() {
       <h1>Register page</h1>
       <div className={s.registerForm}>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="formBasicNmae">
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
@@ -45,7 +45,9 @@ function RegisterView() {
               value={name}
               onChange={handleChange}
             />
+          </Form.Group>
 
+          <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label className={s.input}>Email address</Form.Label>
             <Form.Control
               type="email"
@@ -55,7 +57,6 @@ function RegisterView() {
               autoComplete="off"
               onChange={handleChange}
             />
-
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
