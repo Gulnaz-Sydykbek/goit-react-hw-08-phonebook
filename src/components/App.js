@@ -20,7 +20,6 @@ import * as authSelectors from 'redux/auth/auth-selectors';
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getisFetchingCurrent);
-  const isLoading = useSelector(state => state.contacts.isLoading);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -30,9 +29,6 @@ function App() {
     !isFetchingCurrentUser && (
       <Container>
         <AppBar />
-
-        {isLoading && <h>Loading...</h>}
-
         <Switch>
           <PublicRoute exact path="/">
             <HomeView />

@@ -3,7 +3,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { phonebookOperations, phonebookSelector } from 'redux/phonebook';
 import { Button } from 'react-bootstrap';
+import { BsFillTrashFill } from 'react-icons/bs';
 import s from './Contacts.module.css';
+import Edit from './Edit';
+import Loader from './Loader';
 
 function ContactList() {
   const contacts = useSelector(phonebookSelector.getVisiblePhonbookList);
@@ -27,15 +30,15 @@ function ContactList() {
         contacts.map(({ id, name, number }) => (
           <li className={item} key={id}>
             <span>
-              {name}: {number}
+              <Edit name={name} number={number} />
             </span>
             <Button type="button" onClick={() => onDeleteContact(id)}>
-              Delete
+              <BsFillTrashFill />
             </Button>
           </li>
         ))}
 
-      {loading && <h2>Loading...</h2>}
+      {loading && <Loader />}
     </ul>
   );
 }
