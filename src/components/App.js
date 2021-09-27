@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import AppBar from './UserMenu/AppBar';
+import AppBar from './Navigation/AppBar';
 
 import HomeView from 'views/HomeView';
 import RegisterView from 'views/RegisterView';
@@ -21,6 +20,7 @@ import * as authSelectors from 'redux/auth/auth-selectors';
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getisFetchingCurrent);
+  const isLoading = useSelector(state => state.contacts.isLoading);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -30,6 +30,8 @@ function App() {
     !isFetchingCurrentUser && (
       <Container>
         <AppBar />
+
+        {isLoading && <h>Loading...</h>}
 
         <Switch>
           <PublicRoute exact path="/">

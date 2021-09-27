@@ -1,7 +1,7 @@
 function HomeView() {
   return (
     <div>
-      <h1>Приветственная страница нашего сервиса</h1>
+      <h1>Welkom to the phonebook!</h1>
     </div>
   );
 }

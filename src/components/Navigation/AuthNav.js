@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import s from './Navigation.module.css';
+import s from '../Navigation/Navigation.module.css';
 
 function AuthNav() {
   const { link, activeLink } = s;

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { phonebookOperations, phonebookSelector } from 'redux/phonebook';
+import { Button } from 'react-bootstrap';
 import s from './Contacts.module.css';
 
 function ContactList() {
@@ -17,10 +18,10 @@ function ContactList() {
   const onDeleteContact = id =>
     dispatch(phonebookOperations.deleteContacts(id));
 
-  const { item } = s;
+  const { item, itemContainer } = s;
 
   return (
-    <ul>
+    <ul className={itemContainer}>
       {error && <h2>{error}</h2>}
       {contacts.length > 0 &&
         contacts.map(({ id, name, number }) => (
@@ -28,9 +29,9 @@ function ContactList() {
             <span>
               {name}: {number}
             </span>
-            <button type="button" onClick={() => onDeleteContact(id)}>
+            <Button type="button" onClick={() => onDeleteContact(id)}>
               Delete
-            </button>
+            </Button>
           </li>
         ))}
 
