@@ -10,7 +10,7 @@ function Navigation() {
   return (
     <nav>
       <NavLink exact to="/" className={link} activeClassName={activeLink}>
-        Home
+        Main
       </NavLink>
 
       {isLoggedIn && (

@@ -13,7 +13,7 @@ function AuthNav() {
           className={link}
           activeClassName={activeLink}
         >
-          Register
+          Sign up
         </NavLink>
 
         <NavLink to="/login" className={link} activeClassName={activeLink}>
