@@ -38,21 +38,14 @@ const authSlice = createSlice({
       toast.error(action.payload);
     },
 
-    [authOperations.logOut.pending](state) {
-      state.error = null;
-    },
     [authOperations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
-    [authOperations.logOut.rejected](state, action) {
-      toast.error(action.payload);
-    },
 
     [authOperations.fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
-      state.error = null;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
@@ -61,7 +54,6 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state, action) {
       state.isFetchingCurrentUser = false;
-      toast.error(action.payload);
     },
   },
 });
