@@ -1,3 +1,18 @@
+.main {
+  min-height: calc(93vh);
+  background-image: linear-gradient(
+      to right,
+      rgba(193, 218, 219, 0.192),
+      rgba(36, 37, 25, 0.267)
+    ),
+    url(../img/phone.jpg);
+  background-position: center;
+}
+
+.welkom {
+  color: rgb(214, 213, 194);
+}
+
 .registerForm {
   margin-top: 20px;
   margin-left: auto;
