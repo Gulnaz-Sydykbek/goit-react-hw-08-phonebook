@@ -30,7 +30,7 @@ function ContactList() {
         contacts.map(({ id, name, number }) => (
           <li className={item} key={id}>
             <span>
-              <Edit name={name} number={number} />
+              <Edit name={name} number={number} id={id} />
             </span>
             <Button type="button" onClick={() => onDeleteContact(id)}>
               <BsFillTrashFill />

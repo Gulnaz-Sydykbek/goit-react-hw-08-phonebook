@@ -9,6 +9,8 @@ const entities = createReducer([], {
   ],
   [phonebookActions.deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [phonebookActions.updateContactSuccess]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
 });
 
 const filter = createReducer('', {
@@ -27,6 +29,10 @@ const isLoading = createReducer(false, {
   [phonebookActions.deleteContactRequest]: () => true,
   [phonebookActions.deleteContactSuccess]: () => false,
   [phonebookActions.deleteContactError]: () => false,
+
+  [phonebookActions.updateContactRequest]: () => true,
+  [phonebookActions.updateContactSuccess]: () => false,
+  [phonebookActions.updateContactError]: () => false,
 });
 
 const error = createReducer(null, {
@@ -38,6 +44,9 @@ const error = createReducer(null, {
 
   [phonebookActions.deleteContactError]: (_, { payload }) => payload,
   [phonebookActions.deleteContactRequest]: () => null,
+
+  [phonebookActions.updateContactError]: (_, { payload }) => payload,
+  [phonebookActions.updateContactRequest]: () => null,
 });
 
 const phonebookReduser = combineReducers({

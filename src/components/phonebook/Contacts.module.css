@@ -72,3 +72,9 @@
 .editInput {
   border: none;
 }
+
+.editBbutton {
+  background-color: white;
+  color: #146ee4;
+  border: none;
+}
