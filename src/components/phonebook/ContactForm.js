@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { phonebookOperations } from 'redux/phonebook';
 import s from './Contacts.module.css';
-import * as phonebooksOperations from 'redux/phonebook/phonebook-operations';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -42,7 +42,7 @@ function ContactForm() {
       toast.error(`${number} is already in contacts`);
     } else {
       const phoneList = { name, number };
-      dispatch(phonebooksOperations.addContacts(phoneList));
+      dispatch(phonebookOperations.addContacts(phoneList));
     }
 
     setName('');

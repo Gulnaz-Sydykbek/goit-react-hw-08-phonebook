@@ -74,7 +74,16 @@
 }
 
 .editBbutton {
+  width: 42px;
+  height: 38px;
   background-color: white;
   color: #146ee4;
   border: none;
+  border-radius: 4px;
+}
+
+.editBbutton:hover,
+.editBbutton:focus {
+  background-color: #146ee4;
+  color: white;
 }

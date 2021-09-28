@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateContacts } from 'redux/phonebook/phonebook-operations';
-import { Button } from 'react-bootstrap';
 import { RiSave3Line } from 'react-icons/ri';
+import { phonebookOperations } from 'redux/phonebook';
 import s from './Contacts.module.css';
 
 function Edit(props) {
@@ -18,7 +17,7 @@ function Edit(props) {
   };
 
   const onUpdateContact = (id, item) => {
-    dispatch(updateContacts(id, item));
+    dispatch(phonebookOperations.updateContacts(id, item));
   };
 
   return (
@@ -39,13 +38,13 @@ function Edit(props) {
         onChange={onChange}
       />
 
-      <Button
+      <button
         className={s.editBbutton}
         type="button"
         onClick={() => onUpdateContact(id, edit)}
       >
         <RiSave3Line />
-      </Button>
+      </button>
     </div>
   );
 }

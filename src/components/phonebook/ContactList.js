@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { phonebookOperations, phonebookSelector } from 'redux/phonebook';
 import { Button } from 'react-bootstrap';
 import { BsFillTrashFill } from 'react-icons/bs';
-import s from './Contacts.module.css';
+import { phonebookOperations, phonebookSelector } from 'redux/phonebook';
 import Edit from './Edit';
 import Loader from './Loader';
+import s from './Contacts.module.css';
 
 function ContactList() {
   const contacts = useSelector(phonebookSelector.getVisiblePhonbookList);

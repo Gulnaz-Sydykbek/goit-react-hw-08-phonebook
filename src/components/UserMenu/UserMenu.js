@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import avatar from './avatar.jpg';
-import * as authSelector from 'redux/auth/auth-selectors';
-import * as authOperations from 'redux/auth/auth-operations';
+import { authSelectors, authOperations } from 'redux/auth';
 import s from './User.module.css';
 
 function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelector.getUsername);
+  const name = useSelector(authSelectors.getUsername);
 
   return (
     <div>

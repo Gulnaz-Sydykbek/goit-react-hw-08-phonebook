@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import * as authOperations from '../redux/auth/auth-operations';
 import { Form, Button } from 'react-bootstrap';
+import { authOperations } from 'redux/auth';
 import s from './View.module.css';
 
 function LoginView() {

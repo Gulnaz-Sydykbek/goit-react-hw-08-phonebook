@@ -7,6 +7,7 @@ import App from './components/App';
 import * as mainStore from './redux/srore';
 import 'modern-normalize/modern-normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 

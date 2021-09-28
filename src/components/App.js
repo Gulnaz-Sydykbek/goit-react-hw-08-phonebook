@@ -3,19 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import Container from './Container/Container';
+import PrivateRoute from './Route/PrivateRoute';
+import PublicRoute from './Route/PublicRoute';
 import AppBar from './Navigation/AppBar';
 
 import HomeView from 'views/HomeView';
 import RegisterView from 'views/RegisterView';
 import LoginView from 'views/LoginView';
-import Container from './container/Container';
-import ContactList from './phonebook/ContactList';
-import ContactForm from './phonebook/ContactForm';
-import Filter from './phonebook/Filter';
-import * as authOperations from 'redux/auth/auth-operations';
-import * as authSelectors from 'redux/auth/auth-selectors';
+import PhonebookNav from './Navigation/PhonebookNav';
+import { authOperations, authSelectors } from 'redux/auth';
 
 function App() {
   const dispatch = useDispatch();
@@ -43,12 +40,7 @@ function App() {
           </PublicRoute>
 
           <PrivateRoute path="/contacts" redirectTo="/login">
-            <h1>Phonebook</h1>
-            <ContactForm />
-
-            <h2>Contacts</h2>
-            <Filter />
-            <ContactList />
+            <PhonebookNav />
           </PrivateRoute>
 
           <Redirect to="/" />
